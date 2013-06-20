@@ -21,6 +21,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "haml"
+gem "model_presenter"
 
 group :test, :development do
   gem "spring"

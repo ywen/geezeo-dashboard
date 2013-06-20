@@ -53,6 +53,8 @@ GEM
     guard-spring (0.0.3)
       guard
       spring
+    haml (4.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -70,6 +72,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
+    model_presenter (0.1.0)
+      json
     multi_json (1.7.7)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -148,7 +152,9 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   guard-spring
+  haml
   jquery-rails
+  model_presenter
   rails (= 3.2.13)
   rb-fsevent
   rb-readline
