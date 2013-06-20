@@ -1,5 +1,6 @@
 class UserStatisticsController < ApplicationController
   def index
-    @presenter = Presenters::UserStatistics.new("s")
+    model = Models::UserStatistics.fetch
+    @presenter = Presenters::UserStatistics.new(model)
   end
 end

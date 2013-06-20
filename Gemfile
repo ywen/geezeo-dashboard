@@ -26,7 +26,7 @@ gem "model_presenter"
 
 group :test, :development do
   gem "spring"
-  gem "guard-spring"
+  gem "guard-rspec"
   gem "rspec-rails"
   gem 'rb-fsevent'
   gem 'rb-readline'
