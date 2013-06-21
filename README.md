@@ -1,4 +1,4 @@
-Geezeo Dashboard -- T display dashboard of a user
+Geezeo Dashboard
 ====================================
 
 [![Build Status](https://travis-ci.org/ywen/geezeo-dashboard.png?branch=master)](https://travis-ci.org/ywen/geezeo-dashboard)
