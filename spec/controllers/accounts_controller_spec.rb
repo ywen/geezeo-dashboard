@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserStatisticsController do
+describe AccountsController do
   describe "GET#index" do
     let(:model) { double :model }
     let(:presenter) { double :presenter }
