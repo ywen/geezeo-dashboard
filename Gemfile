@@ -22,6 +22,8 @@ end
 
 gem 'jquery-rails'
 gem "haml"
+gem "httparty"
+gem "yajl-ruby"
 gem "model_presenter"
 
 group :test, :development do
