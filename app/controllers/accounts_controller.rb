@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   def index
-    model = Models::UserStatistics.fetch
-    @presenter = Presenters::UserStatistics.new(model)
+    model = Account.fetch
+    @presenter = Presenters::Account.new(model)
   end
 end

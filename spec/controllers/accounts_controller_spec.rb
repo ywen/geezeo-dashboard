@@ -6,17 +6,17 @@ describe AccountsController do
     let(:presenter) { double :presenter }
 
     before(:each) do
-      Presenters::UserStatistics.stub(:new).and_return presenter
-      Models::UserStatistics.stub(:fetch).and_return model
+      Presenters::Account.stub(:new).and_return presenter
+      Account.stub(:fetch).and_return model
     end
 
     it "fetches the user information" do
-      Models::UserStatistics.should_receive(:fetch).and_return model
+      Account.should_receive(:fetch).and_return model
       get :index
     end
 
     it "initializes a statistics presenter" do
-      Presenters::UserStatistics.should_receive(:new).with(model).and_return presenter
+      Presenters::Account.should_receive(:new).with(model).and_return presenter
       get :index
     end
 

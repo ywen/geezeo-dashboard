@@ -1,5 +1,5 @@
 module Presenters
-  class UserStatistics
+  class Account
     include ModelPresenter::Base
   end
 end
