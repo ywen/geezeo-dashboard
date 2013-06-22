@@ -22,7 +22,7 @@ end
 
 gem 'jquery-rails'
 gem "haml"
-gem "httparty"
+gem "curb"
 gem "yajl-ruby"
 gem "model_presenter"
 

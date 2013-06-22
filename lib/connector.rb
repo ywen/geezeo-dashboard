@@ -2,7 +2,7 @@ require 'yajl'
 module Connector
   class << self
     def get(kind, *args)
-      Yajl::Parser.parse(class_name(kind).fetch(*args).body, symbolize_keys: true)
+      class_name(kind).fetch(*args)
     end
 
     private
@@ -15,7 +15,7 @@ module Connector
   class Account
     class << self
       def fetch
-        Fetcher.fetch
+        Fetcher.fetch[:accounts]
       end
     end
   end
@@ -23,7 +23,7 @@ module Connector
   class Transaction
     class << self
       def fetch(account_id)
-        Fetcher.fetch("/#{account_id}/transactions")
+        Fetcher.fetch("/#{account_id}/transactions")[:transactions]
       end
     end
   end
@@ -31,7 +31,7 @@ module Connector
   class Fetcher
     class << self
       def fetch(extra="")
-        HTTParty.get("#{base_url}#{extra}")
+        Yajl::Parser.parse(Curl.get("#{base_url}#{extra}").body_str, symbolize_keys: true)
       end
 
       private
