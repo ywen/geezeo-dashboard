@@ -1,2 +1,9 @@
--@presenters.each do |presenter|
-  .account=presenter.name
+#account-balance
+  All Accounts Balance:
+  =@presenter.formatted_balance
+.line
+#accounts-list
+  Accounts:
+  %ul
+    - @presenter.each_account do |account|
+      %li= account.name
