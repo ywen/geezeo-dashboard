@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
+    chunky_png (1.2.8)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -38,6 +39,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     curb (0.8.4)
     daemons (1.1.9)
     diff-lcs (1.2.4)
@@ -47,6 +54,7 @@ GEM
       multi_json (~> 1.0)
     ffi (1.9.0)
     formatador (0.2.4)
+    fssm (0.2.10)
     guard (1.8.1)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -142,6 +150,9 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    susy (1.0.9)
+      compass (>= 0.12.2)
+      sass (>= 3.2.0)
     terminal-notifier-guard (1.5.3)
     thin (1.5.1)
       daemons (>= 1.0.9)
@@ -163,6 +174,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  compass
+  compass-rails
   curb
   guard-rspec
   haml
@@ -175,6 +188,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   spring
   sqlite3
+  susy
   terminal-notifier-guard
   thin
   uglifier (>= 1.0.3)

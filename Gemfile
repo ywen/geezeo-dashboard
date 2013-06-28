@@ -26,6 +26,9 @@ gem "curb"
 gem "yajl-ruby"
 gem "model_presenter"
 gem 'thin'
+gem "susy"
+gem 'compass'
+gem 'compass-rails'
 
 group :test, :development do
   gem "spring"

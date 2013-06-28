@@ -2,7 +2,9 @@ GeezeoDashboard::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :accounts, only: [:index]
+  resources :accounts, only: [:index] do
+    resources :transactions, only: [:index], controller: "accounts/transactions"
+  end
   root :to => 'accounts#index'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
