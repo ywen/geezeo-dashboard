@@ -25,6 +25,7 @@ gem "haml"
 gem "curb"
 gem "yajl-ruby"
 gem "model_presenter"
+gem 'thin'
 
 group :test, :development do
   gem "spring"

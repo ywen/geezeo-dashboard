@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   def index
     models = Account.fetch
-    @presenters = models.map{ |m| Presenters::Account.new(m) }
+    @presenter = Presenters::AccountSummary.build models
   end
 end

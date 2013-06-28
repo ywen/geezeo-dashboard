@@ -1,6 +1,6 @@
 module Presenters
   class Account
     include ModelPresenter::Base
-    forward_from_model :response_hash
+    forward_from_model :balance, :name
   end
 end
