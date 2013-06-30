@@ -7,6 +7,6 @@
     Accounts:
     %ul
       - @presenter.each_account do |account|
-        %li="#{account.name} ( #{account.formatted_balance} )"
+        %li{id: account.id}="#{account.name} ( #{account.formatted_balance} )"
   #transaction-list
     Loading Transactions...
