@@ -1,8 +1,8 @@
 module Accounts
   class TransactionsController < ApplicationController
     def index
-      transactions = Transaction.fetch(params)
-      @presenters = transactions.map{|transaction| Presenters::Transaction.new(transaction) }
+      transaction_list = TransactionsList.fetch(params)
+      @presenter = Presenters::TransactionsList.new(transaction_list)
     end
   end
 end
