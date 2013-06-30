@@ -26,3 +26,25 @@ describe TransactionsList do
     end
   end
 end
+
+describe Transaction do
+  subject { described_class.new response_hash }
+
+  describe "#debit?" do
+    context "when the Transaction type is debit" do
+      let(:response_hash) { { transaction_type: "Debit" } }
+
+      it "is debit" do
+        expect(subject).to be_debit
+      end
+    end
+
+    context "when the Transaction type is not debit" do
+      let(:response_hash) { { transaction_type: "Credit" } }
+
+      it "is not debit" do
+        expect(subject).not_to be_debit
+      end
+    end
+  end
+end
