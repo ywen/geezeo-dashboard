@@ -1,5 +1,5 @@
 class Account < ModelBase
-  forward_from_hash :name
+  forward_from_hash :name, :id
 
   class << self
     def fetch

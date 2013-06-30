@@ -41,13 +41,64 @@ module Connector
   end
 
   describe Transaction do
+    subject(:transaction) { Transaction.new transactions_hash }
+
     describe ".fetch" do
       let(:account_id) { 12 }
       let(:transactions_hash) { { transactions: [] } }
 
+      before(:each) do
+        Fetcher.stub(:fetch).and_return transactions_hash
+      end
+
       it "asks the fetcher to fetch the results" do
         Fetcher.should_receive(:fetch).with("/12/transactions").and_return transactions_hash
         Transaction.fetch(account_id)
+      end
+
+      it "returns a Transaction object" do
+        Transaction.stub(:new).with(transactions_hash).and_return transaction
+        expect(Transaction.fetch(account_id)).to eq(transaction)
+      end
+    end
+
+    describe "#transactions_array" do
+      let(:transactions_hash) { { transactions: [{ attr: "val" }] } }
+
+      it "returns the transactions array" do
+        expect(subject.transactions_array).to eq([{ attr: "val" }])
+      end
+    end
+
+    describe "#next_page" do
+      let(:transactions_hash) { {
+        pages: { total_pages: 6, current_page: 1 }
+      } }
+
+      it "returns the next page from the current_page" do
+        expect(subject.next_page).to eq(2)
+      end
+    end
+
+    describe "#has_next_page?" do
+      context "when the current_page is less than the total page" do
+        let(:transactions_hash) { {
+          pages: { total_pages: 6, current_page: 5 }
+        } }
+
+        it "has next page" do
+          expect(subject).to have_next_page
+        end
+      end
+
+      context "when the current_page is larger than or equal to the total page" do
+        let(:transactions_hash) { {
+          pages: { total_pages: 6, current_page: 6 }
+        } }
+
+        it "doesn't have the next page" do
+          expect(subject).not_to have_next_page
+        end
       end
     end
   end

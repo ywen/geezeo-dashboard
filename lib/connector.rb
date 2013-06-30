@@ -21,10 +21,35 @@ module Connector
   end
 
   class Transaction
+    attr_reader :response_hash
+
     class << self
       def fetch(account_id)
-        Fetcher.fetch("/#{account_id}/transactions")[:transactions]
+        json = Fetcher.fetch("/#{account_id}/transactions")
+        self.new json
       end
+    end
+
+    def initialize(response_hash)
+      @response_hash = response_hash
+    end
+
+    def transactions_array
+      response_hash[:transactions]
+    end
+
+    def next_page
+      current_page + 1
+    end
+
+    def has_next_page?
+      current_page < response_hash[:pages][:total_pages].to_i
+    end
+
+    private
+
+    def current_page
+      response_hash[:pages][:current_page].to_i
     end
   end
 
