@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Accounts::TransactionsController do
+describe TransactionsController do
   describe "GET#index" do
     let(:transaction_list) { double :transaction_list }
     let(:presenter) { double :presenter }
