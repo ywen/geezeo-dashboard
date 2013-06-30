@@ -26,14 +26,6 @@ describe Account do
     end
   end
 
-  describe "#balance" do
-    let(:account_hash) { { balance: "234.56" } }
-
-    it "returns the balance in cents" do
-      expect(subject.balance).to eq(23456)
-    end
-  end
-
   describe "#name" do
     let(:account_hash) { { name: "name" } }
 

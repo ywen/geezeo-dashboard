@@ -15,4 +15,8 @@ class ModelBase
     @response_hash = response_hash
   end
 
+  def balance
+    response_hash[:balance].to_f * 100
+  end
+
 end

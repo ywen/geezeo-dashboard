@@ -1,4 +1,4 @@
 %ul
-  -@presenters.each do |presenter|
-    %li= presenter.response_hash.inspect
+  -@presenter.each_transaction do |transaction|
+    %li= transaction.response_hash.inspect
 
