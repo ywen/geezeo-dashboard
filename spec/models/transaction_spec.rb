@@ -72,6 +72,14 @@ describe TransactionList do
     it "returns the first data's next page" do
       expect(subject.next_page).to eq(2)
     end
+
+    context "when no data" do
+      let(:transaction_list_data) { [] }
+
+      it "returns 1" do
+        expect(subject.next_page).to eq(1)
+      end
+    end
   end
 end
 

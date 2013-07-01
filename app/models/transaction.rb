@@ -43,6 +43,6 @@ class TransactionList
   end
 
   def next_page
-    transaction_list_data[0].next_page
+    transaction_list_data.empty? ? 1 : transaction_list_data[0].next_page
   end
 end
