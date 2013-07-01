@@ -3,11 +3,13 @@
     %th Name
     %th Tags
     %th Account
+    %th Transaction Time
     %th Balance
   -@presenter.each_transaction do |transaction|
     %tr
       %td= transaction.original_name
       %td= transaction.tags
       %td= transaction.account_name
+      %td= transaction.created_at_str
       %td= transaction.formatted_balance
 
