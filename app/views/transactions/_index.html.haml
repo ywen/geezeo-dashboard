@@ -12,4 +12,5 @@
       %td= transaction.account_name
       %td= transaction.posted_at_str
       %td{class: transaction.balance_class}= transaction.formatted_balance
-
+-if @presenter.has_next_page?
+  =link_to "Load more...", transactions_path(page: @presenter.next_page)

@@ -19,8 +19,9 @@ class TransactionList
     def fetch(params)
       all_transactions = []
       all_data = []
+      page = params[:page] || 1
       params[:account_ids].split(",").each do |account_id|
-        data = Connector.get :transactions, account_id
+        data = Connector.get :transactions, account_id, page
         all_data << data
         accounts = Account::Persistence.load
         account_name = accounts[account_id.to_i]

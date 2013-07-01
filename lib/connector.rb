@@ -24,8 +24,8 @@ module Connector
     attr_reader :response_hash
 
     class << self
-      def fetch(account_id)
-        json = Fetcher.fetch("/#{account_id}/transactions")
+      def fetch(account_id, page)
+        json = Fetcher.fetch("/#{account_id}/transactions?page=#{page}")
         self.new json
       end
     end

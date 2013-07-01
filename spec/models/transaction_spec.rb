@@ -21,15 +21,25 @@ describe TransactionList do
     }
 
     before(:each) do
-      Connector.stub(:get).with(:transactions, '12').and_return connector_transaction1
-      Connector.stub(:get).with(:transactions, '14').and_return connector_transaction2
+      Connector.stub(:get).with(:transactions, '12', 1).and_return connector_transaction1
+      Connector.stub(:get).with(:transactions, '14', 1).and_return connector_transaction2
       Account::Persistence.stub(:load).and_return({ 12 => "name1", 14 => "name2" })
     end
 
     it "fetches transactions" do
-      Connector.should_receive(:get).with(:transactions, '12').and_return connector_transaction1
-      Connector.should_receive(:get).with(:transactions, '14').and_return connector_transaction2
+      Connector.should_receive(:get).with(:transactions, '12', 1).and_return connector_transaction1
+      Connector.should_receive(:get).with(:transactions, '14', 1).and_return connector_transaction2
       described_class.fetch(params)
+    end
+
+    context "with params[:page]" do
+      let(:params) { { account_ids: "12,14", page: 2 } }
+
+      it "uses params" do
+        Connector.should_receive(:get).with(:transactions, '12', 2).and_return connector_transaction1
+        Connector.should_receive(:get).with(:transactions, '14', 2).and_return connector_transaction2
+        described_class.fetch(params)
+      end
     end
 
     it "returns the TransactionList object" do

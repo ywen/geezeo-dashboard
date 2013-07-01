@@ -52,13 +52,13 @@ module Connector
       end
 
       it "asks the fetcher to fetch the results" do
-        Fetcher.should_receive(:fetch).with("/12/transactions").and_return transactions_hash
-        Transaction.fetch(account_id)
+        Fetcher.should_receive(:fetch).with("/12/transactions?page=3").and_return transactions_hash
+        Transaction.fetch(account_id, 3)
       end
 
       it "returns a Transaction object" do
         Transaction.stub(:new).with(transactions_hash).and_return transaction
-        expect(Transaction.fetch(account_id)).to eq(transaction)
+        expect(Transaction.fetch(account_id, 3)).to eq(transaction)
       end
     end
 
