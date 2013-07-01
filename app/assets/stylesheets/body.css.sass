@@ -17,3 +17,30 @@ body
     @include span-columns(4,16)
   #transaction-list
     @include span-columns(12 omega,16)
+table
+  width: 100%
+  clear: both
+  border-top: 1px solid #222
+  padding-top: 10px
+  margin-bottom: 30px
+  font-size: 14px
+  line-height: 18px
+
+  tr:nth-child(odd)
+    background-color: #f5f5f5
+  tr:nth-child(even)
+    background-color: #ebebeb
+
+  td
+    width: auto
+    padding: 5px
+    border-right: 1px solid #eee
+
+  td:first-child
+    width: 30%
+
+  td:last-child
+    width: 50%
+
+  a
+    text-decoration: underline
