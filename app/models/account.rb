@@ -22,6 +22,10 @@ class Account < ModelBase
         end
       end
 
+      def load
+        YAML.load_file yaml_file
+      end
+
       private
 
       def yaml_file
