@@ -11,5 +11,5 @@
       %td= transaction.tags
       %td= transaction.account_name
       %td= transaction.posted_at_str
-      %td= transaction.formatted_balance
+      %td{class: transaction.balance_class}= transaction.formatted_balance
 

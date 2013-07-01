@@ -14,6 +14,10 @@ module Presenters
       end.join(", ")
     end
 
+    def balance_class
+      model.debit? ? "debit" : "credit"
+    end
+
     private
 
     def balance

@@ -50,5 +50,20 @@ module Presenters
         expect(subject.posted_at_str).to eq("09/08/2013 01:15 PM")
       end
     end
+
+    describe "#balance_class" do
+      context "when the transaction is a debit" do
+        it "returns debit" do
+          expect(subject.balance_class).to eq("debit")
+        end
+      end
+
+      context "when the transaction is a credit" do
+        it "returns credit" do
+          model.stub(:debit?).and_return false
+          expect(subject.balance_class).to eq("credit")
+        end
+      end
+    end
   end
 end
