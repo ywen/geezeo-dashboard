@@ -1,20 +1,16 @@
 $(document).ready ->
-  account_ids = $("#account-list ul li").map( ->
-    return $(this).attr("id")
-  ).get()
   page = 1
   hasNextPage = true
-  url = "/transactions?account_ids=#{account_ids}"
+  base_url = "/transactions"
 
-  $.ajax(url,
+  $.ajax(base_url,
     success: (data, textStatus, jqXHR)->
       $("#transaction-list").html(data)
       page = jqXHR.getResponseHeader("NextPage")
   )
 
   $("#transaction-list").on("click", "a", (event)->
-    link = $(this).attr("href")
-    url = "#{link}?page=#{page}&account_ids=#{account_ids}"
+    url = "#{base_url}?page=#{page}"
     link = $(this)
     $.ajax(url).done((data, textStatus, jqXHR)->
       $("#transaction-list table").append(data)

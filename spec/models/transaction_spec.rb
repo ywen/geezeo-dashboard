@@ -12,7 +12,7 @@ describe TransactionList do
     let(:transaction1) { double :transaction1 }
     let(:transaction2) { double :transaction2 }
     let(:transaction_array) { [ transaction_hash1, transaction_hash2 ] }
-    let(:params) { { account_ids: "12,14" } }
+    let(:params) { { } }
     let(:connector_transaction1) {
       double :connector_transaction1, transactions_array: [transaction_hash1, transaction_hash2]
     }
@@ -21,23 +21,23 @@ describe TransactionList do
     }
 
     before(:each) do
-      Connector.stub(:get).with(:transactions, '12', 1).and_return connector_transaction1
-      Connector.stub(:get).with(:transactions, '14', 1).and_return connector_transaction2
+      Connector.stub(:get).with(:transactions, 12, 1).and_return connector_transaction1
+      Connector.stub(:get).with(:transactions, 14, 1).and_return connector_transaction2
       Account::Persistence.stub(:load).and_return({ 12 => "name1", 14 => "name2" })
     end
 
     it "fetches transactions" do
-      Connector.should_receive(:get).with(:transactions, '12', 1).and_return connector_transaction1
-      Connector.should_receive(:get).with(:transactions, '14', 1).and_return connector_transaction2
+      Connector.should_receive(:get).with(:transactions, 12, 1).and_return connector_transaction1
+      Connector.should_receive(:get).with(:transactions, 14, 1).and_return connector_transaction2
       described_class.fetch(params)
     end
 
     context "with params[:page]" do
-      let(:params) { { account_ids: "12,14", page: 2 } }
+      let(:params) { { page: 2 } }
 
       it "uses params" do
-        Connector.should_receive(:get).with(:transactions, '12', 2).and_return connector_transaction1
-        Connector.should_receive(:get).with(:transactions, '14', 2).and_return connector_transaction2
+        Connector.should_receive(:get).with(:transactions, 12, 2).and_return connector_transaction1
+        Connector.should_receive(:get).with(:transactions, 14, 2).and_return connector_transaction2
         described_class.fetch(params)
       end
     end
