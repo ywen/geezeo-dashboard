@@ -4,7 +4,9 @@ class Account < ModelBase
   class << self
     def fetch
       accounts_array = Connector.get :accounts
-      accounts_array.map {|h| Account.new(h) }
+      accounts = accounts_array.map {|h| Account.new(h) }
+      AccountSaver.save(accounts)
+      accounts
     end
   end
 end

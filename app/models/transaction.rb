@@ -13,9 +13,14 @@ class TransactionsList
 
   class << self
     def fetch(params)
-      data = Connector.get :transactions, params[:account_id]
-      transactions = data.transactions_array.map{|t| Transaction.new t[:transaction] }
-      self.new transactions, data
+      all_transactions = []
+      all_data = []
+      params[:account_ids].split(",").each do |account_id|
+        data = Connector.get :transactions, account_id
+        all_data << data
+        all_transactions << data.transactions_array.map{|t| Transaction.new t[:transaction] }
+      end
+      self.new all_transactions.flatten, all_data
     end
   end
 

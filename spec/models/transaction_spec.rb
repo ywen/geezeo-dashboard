@@ -7,17 +7,22 @@ describe TransactionsList do
     let(:transaction1) { double :transaction1 }
     let(:transaction2) { double :transaction2 }
     let(:transaction_array) { [ transaction_hash1, transaction_hash2 ] }
-    let(:params) { { account_id: "12" } }
-    let(:connector_transaction) {
-      double :connector_transaction, transactions_array: [transaction_hash1, transaction_hash2]
+    let(:params) { { account_ids: "12,14" } }
+    let(:connector_transaction1) {
+      double :connector_transaction1, transactions_array: [transaction_hash1, transaction_hash2]
+    }
+    let(:connector_transaction2) {
+      double :connector_transaction2, transactions_array: []
     }
 
     before(:each) do
-      Connector.stub(:get).and_return connector_transaction
+      Connector.stub(:get).with(:transactions, '12').and_return connector_transaction1
+      Connector.stub(:get).with(:transactions, '14').and_return connector_transaction2
     end
 
     it "fetches transactions" do
-      Connector.should_receive(:get).with(:transactions, '12').and_return connector_transaction
+      Connector.should_receive(:get).with(:transactions, '12').and_return connector_transaction1
+      Connector.should_receive(:get).with(:transactions, '14').and_return connector_transaction2
       described_class.fetch(params)
     end
 

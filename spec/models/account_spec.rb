@@ -12,6 +12,7 @@ describe Account do
 
     before(:each) do
       Connector.stub(:get).with(:accounts).and_return account_array
+      AccountSaver.stub(:save)
     end
 
     it "fetches accounts" do
@@ -23,6 +24,11 @@ describe Account do
       Account.should_receive(:new).with(account_hash1).and_return account1
       Account.should_receive(:new).with(account_hash2).and_return account2
       expect(Account.fetch).to eq([account1, account2])
+    end
+
+    it "saves accounts" do
+      AccountSaver.should_receive(:save)
+      Account.fetch
     end
   end
 

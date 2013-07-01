@@ -1,4 +1,15 @@
-%ul
+%table
+  %tr
+    %th Name
+    %th Memo
+    %th Tags
+    %th Account
+    %th Balance
   -@presenter.each_transaction do |transaction|
-    %li= transaction.response_hash.inspect
+    %tr
+      %td= transaction.original_name
+      %td= transaction.memo
+      %td= transaction.tags.inspect
+      %td= transaction.account_name
+      %td= transaction.formatted_balance
 
