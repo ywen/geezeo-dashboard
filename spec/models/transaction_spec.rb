@@ -38,10 +38,39 @@ describe TransactionList do
   end
 
   describe "#has_next_page?" do
+    let(:transaction_list_data) { [ data1, data2 ] }
+    let(:data1) { double :data1, has_next_page?: false }
+    let(:data2) { double :data2, has_next_page?: false }
+
+    context "when the transaction list data is empty" do
+      let(:transaction_list_data) { [] }
+
+      it "has no next page" do
+        expect(subject).not_to have_next_page
+      end
+    end
+
     context "when all data has no next page" do
       it "has no next page" do
         expect(subject).not_to have_next_page
       end
+    end
+
+    context "when one data has next page" do
+      it "has next page" do
+        data2.stub(:has_next_page?).and_return true
+        expect(subject).to have_next_page
+      end
+    end
+  end
+
+  describe "#next_page" do
+    let(:transaction_list_data) { [ data1, data2 ] }
+    let(:data1) { double :data1, next_page: 2 }
+    let(:data2) { double :data2, next_page: 2 }
+
+    it "returns the first data's next page" do
+      expect(subject.next_page).to eq(2)
     end
   end
 end

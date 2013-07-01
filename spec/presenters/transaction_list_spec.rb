@@ -8,6 +8,8 @@ module Presenters
     let(:transaction2) { double :transaction2, posted_at: 2.days.ago }
     let(:model) { double :model, transactions: [transaction1, transaction2] }
 
+    forward_from_model_attributes :has_next_page?, :next_page
+
     describe "#each_transaction" do
       it "loops through transaction, sort by posted_at, wraps into presenter" do
         transactions = []
