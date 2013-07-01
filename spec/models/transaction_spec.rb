@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe TransactionsList do
   describe ".fetch" do
-    let(:transaction_hash1) { { attr1: "val1" } }
-    let(:transaction_hash2) { { attr2: "val2" } }
+    let(:transaction_hash1) { { transaction: { attr1: "val1" } } }
+    let(:transaction_hash2) { { transaction: { attr2: "val2" } } }
     let(:transaction1) { double :transaction1 }
     let(:transaction2) { double :transaction2 }
     let(:transaction_array) { [ transaction_hash1, transaction_hash2 ] }
