@@ -1,13 +1,10 @@
--if @presenter.loading_full_page?
-  %table
-    %tr
-      %th Name
-      %th Tags
-      %th Account
-      %th Transaction Time
-      %th Balance
-    = render 'transactions/row'
--else
-  = render 'transactions/row'
--if @presenter.has_next_page? && @presenter.loading_full_page?
+%table
+  %tr
+    %th Name
+    %th Tags
+    %th Account
+    %th Transaction Time
+    %th Balance
+  = render 'transactions/rows'
+-if @presenter.has_next_page?
   =link_to "Load more...", transactions_path
