@@ -12,6 +12,6 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
 config/credentials.yml
-tmp/accounts.yml
+db/accounts.yml
+tmp/

@@ -46,7 +46,7 @@ describe Account::Persistence do
   let(:account1) { double :account1, id: 12, name: "name1" }
 
   describe ".save" do
-    let(:results) { YAML.load_file("#{Rails.root}/tmp/accounts.yml") }
+    let(:results) { YAML.load_file("#{Rails.root}/db/accounts.yml") }
 
     it "writes to YAML with id and name" do
       described_class.save([account1, account2])

@@ -29,7 +29,7 @@ class Account < ModelBase
       private
 
       def yaml_file
-        "#{Rails.root}/tmp/accounts.yml"
+        "#{Rails.root}/db/accounts.yml"
       end
     end
   end
