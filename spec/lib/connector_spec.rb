@@ -68,6 +68,14 @@ module Connector
       it "returns the transactions array" do
         expect(subject.transactions_array).to eq([{ attr: "val" }])
       end
+
+      context "with nil JSON" do
+        let(:transactions_hash) { { } }
+
+        it "returns []" do
+          expect(subject.transactions_array).to eq([])
+        end
+      end
     end
 
     describe "#next_page" do

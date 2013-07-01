@@ -18,3 +18,7 @@ The following text is not meant to be a complete design documentation, rather I 
 
 - The application is a very standard Rails app with one more layer not found in Rails default: a presenter layer. The purpose for a presenter is to provide logic support for presenting data. With a presenter, the view can be made deadly simple.
 - I choose to have an ```Account::Persistence``` for persisting account ids and account name because the names are needed for displaying in transaction list. For all my purpose, a simple YAML file suffices
+
+### Screencast
+
+http://youtu.be/nOjUb3H7HfU

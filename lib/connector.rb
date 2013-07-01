@@ -35,7 +35,7 @@ module Connector
     end
 
     def transactions_array
-      response_hash[:transactions]
+      response_hash[:transactions] || []
     end
 
     def next_page
