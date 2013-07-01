@@ -18,6 +18,7 @@ describe TransactionsList do
     before(:each) do
       Connector.stub(:get).with(:transactions, '12').and_return connector_transaction1
       Connector.stub(:get).with(:transactions, '14').and_return connector_transaction2
+      Account::Persistence.stub(:load).and_return({ 12 => "name1", 14 => "name2" })
     end
 
     it "fetches transactions" do
