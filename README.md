@@ -22,3 +22,8 @@ The following text is not meant to be a complete design documentation, rather I 
 ### Screencast
 
 http://youtu.be/nOjUb3H7HfU
+
+# TODO
+
+- The accounts could have different number of transaction pages. Some code could have been written not to call the API to get the account transactions when we know it will returns nothing, which requires the persistence of ```total_page``` and check against it if we should call the API to fetch the next page. But somehow in the example data all 3 accounts have the same pages of transactions
+- Page beautification
