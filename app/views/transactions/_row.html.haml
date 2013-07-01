@@ -1,0 +1,7 @@
+-@presenter.each_transaction do |transaction|
+  %tr
+    %td= transaction.original_name
+    %td= transaction.tags
+    %td= transaction.account_name
+    %td= transaction.posted_at_str
+    %td{class: transaction.balance_class}= transaction.formatted_balance

@@ -1,16 +1,13 @@
-%table
-  %tr
-    %th Name
-    %th Tags
-    %th Account
-    %th Transaction Time
-    %th Balance
-  -@presenter.each_transaction do |transaction|
+-if @presenter.loading_full_page?
+  %table
     %tr
-      %td= transaction.original_name
-      %td= transaction.tags
-      %td= transaction.account_name
-      %td= transaction.posted_at_str
-      %td{class: transaction.balance_class}= transaction.formatted_balance
--if @presenter.has_next_page?
-  =link_to "Load more...", transactions_path(page: @presenter.next_page)
+      %th Name
+      %th Tags
+      %th Account
+      %th Transaction Time
+      %th Balance
+    = render 'transactions/row'
+-else
+  = render 'transactions/row'
+-if @presenter.has_next_page? && @presenter.loading_full_page?
+  =link_to "Load more...", transactions_path

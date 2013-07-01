@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe TransactionsController do
   describe "GET#index" do
-    let(:transaction_list) { double :transaction_list }
-    let(:presenter) { double :presenter }
+    let(:method_params) { { next_page: 12, has_next_page?: true } }
+    let(:transaction_list) { double :transaction_list, method_params }
+    let(:presenter) { double :presenter, method_params}
 
     before(:each) do
       TransactionList.stub(:fetch).and_return(transaction_list)
