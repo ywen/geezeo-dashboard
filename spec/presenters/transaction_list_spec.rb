@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Presenters
-  describe TransactionsList do
+  describe TransactionList do
     subject { described_class.new model }
 
     let(:transaction1) { double :transaction1, posted_at: 3.days.ago }

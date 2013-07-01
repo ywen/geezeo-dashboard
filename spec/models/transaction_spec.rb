@@ -1,6 +1,11 @@
 require 'spec_helper'
 
-describe TransactionsList do
+describe TransactionList do
+  subject { described_class.new transaction_array, transaction_list_data }
+
+  let(:transaction_array) { [] }
+  let(:transaction_list_data) { [] }
+
   describe ".fetch" do
     let(:transaction_hash1) { { transaction: { attr1: "val1" } } }
     let(:transaction_hash2) { { transaction: { attr2: "val2" } } }
@@ -27,8 +32,16 @@ describe TransactionsList do
       described_class.fetch(params)
     end
 
-    it "returns the TransactionsList object" do
-      expect(described_class.fetch(params)).to be_a(TransactionsList)
+    it "returns the TransactionList object" do
+      expect(described_class.fetch(params)).to be_a(TransactionList)
+    end
+  end
+
+  describe "#has_next_page?" do
+    context "when all data has no next page" do
+      it "has no next page" do
+        expect(subject).not_to have_next_page
+      end
     end
   end
 end

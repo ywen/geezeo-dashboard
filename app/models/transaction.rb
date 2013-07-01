@@ -12,7 +12,7 @@ class Transaction < ModelBase
   end
 end
 
-class TransactionsList
+class TransactionList
   attr_reader :transaction_list_data, :transactions
 
   class << self
@@ -35,5 +35,9 @@ class TransactionsList
   def initialize(transactions, transaction_list_data)
     @transactions = transactions
     @transaction_list_data = transaction_list_data
+  end
+
+  def has_next_page?
+
   end
 end

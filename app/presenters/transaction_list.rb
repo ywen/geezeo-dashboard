@@ -1,5 +1,5 @@
 module Presenters
-  class TransactionsList
+  class TransactionList
     include ModelPresenter::Base
 
     def each_transaction
@@ -8,6 +8,7 @@ module Presenters
         yield Transaction.new(transaction)
       end
     end
+
   end
 end
 
