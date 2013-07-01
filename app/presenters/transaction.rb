@@ -4,8 +4,8 @@ module Presenters
     forward_from_model :original_name, :memo, :account_name
     moneyize :balance
 
-    def created_at_str
-      model.created_at.to_time.strftime("%m/%d/%Y %I:%M %p")
+    def posted_at_str
+      model.posted_at.strftime("%m/%d/%Y %I:%M %p")
     end
 
     def tags

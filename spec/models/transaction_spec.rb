@@ -52,4 +52,13 @@ describe Transaction do
       end
     end
   end
+
+  describe "#posted_at" do
+    let(:time) { "2013-06-19T15:53:53+00:00" }
+    let(:response_hash) { { posted_at: time } }
+
+    it "returns a time" do
+      expect(subject.posted_at).to eq(time.to_time)
+    end
+  end
 end

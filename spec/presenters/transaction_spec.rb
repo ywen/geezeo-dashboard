@@ -39,15 +39,15 @@ module Presenters
       end
     end
 
-    describe "#created_at_str" do
+    describe "#posted_at_str" do
       let(:time) { "2013-09-08 13:15".to_time }
 
       before(:each) do
-        model.stub(:created_at).and_return time
+        model.stub(:posted_at).and_return time
       end
 
       it "returns the time formatted" do
-        expect(subject.created_at_str).to eq("09/08/2013 01:15 PM")
+        expect(subject.posted_at_str).to eq("09/08/2013 01:15 PM")
       end
     end
   end
