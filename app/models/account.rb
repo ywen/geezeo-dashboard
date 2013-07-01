@@ -5,8 +5,28 @@ class Account < ModelBase
     def fetch
       accounts_array = Connector.get :accounts
       accounts = accounts_array.map {|h| Account.new(h) }
-      AccountSaver.save(accounts)
+      Persistence.save(accounts)
       accounts
+    end
+  end
+
+  class Persistence
+    class << self
+      def save(accounts)
+        hash_content = {}
+        accounts.each do |account|
+          hash_content.merge!(account.id => account.name)
+        end
+        File.open(yaml_file, 'w+') do |file|
+          file.write(hash_content.to_yaml)
+        end
+      end
+
+      private
+
+      def yaml_file
+        "#{Rails.root}/tmp/accounts.yml"
+      end
     end
   end
 end

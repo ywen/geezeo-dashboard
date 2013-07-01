@@ -12,7 +12,7 @@ describe Account do
 
     before(:each) do
       Connector.stub(:get).with(:accounts).and_return account_array
-      AccountSaver.stub(:save)
+      Account::Persistence.stub(:save)
     end
 
     it "fetches accounts" do
@@ -27,7 +27,7 @@ describe Account do
     end
 
     it "saves accounts" do
-      AccountSaver.should_receive(:save)
+      Account::Persistence.should_receive(:save)
       Account.fetch
     end
   end
@@ -37,6 +37,20 @@ describe Account do
 
     it "returns the balance in cents" do
       expect(subject.name).to eq("name")
+    end
+  end
+end
+
+describe Account::Persistence do
+  describe ".save" do
+    let(:account1) { double :account1, id: 12, name: "name1" }
+    let(:account2) { double :account2, id: 14, name: "name2" }
+
+    let(:results) { YAML.load_file("#{Rails.root}/tmp/accounts.yml") }
+
+    it "writes to YAML with id and name" do
+      described_class.save([account1, account2])
+      expect(results).to eq( 12 => "name1", 14 => "name2" )
     end
   end
 end
