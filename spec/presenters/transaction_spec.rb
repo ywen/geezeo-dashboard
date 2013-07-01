@@ -23,5 +23,20 @@ module Presenters
         end
       end
     end
+
+    describe "#tags" do
+      let(:tags) { [
+        {tag: {name: "Personal", balance: 200.0}},
+        {tag: { name: "Tag2", balanceL: 222 }}
+      ] }
+
+      before(:each) do
+        model.stub(:tags).and_return tags
+      end
+
+      it "returns tag names" do
+        expect(subject.tags).to eq("Personal, Tag2")
+      end
+    end
   end
 end

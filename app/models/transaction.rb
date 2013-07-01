@@ -1,7 +1,7 @@
 # {:id=>"f0d01c41-475e-4387-a7fb-8530c94a9ec0", :reference_id=>nil, :transaction_type=>"Debit", :memo=>"GameStop", :balance=>59.99, :posted_at=>"2013-06-19T00:00:00+00:00", :created_at=>"2013-06-19T15:53:53+00:00", :nickname=>"GameStop", :original_name=>"GameStop", :check_number=>nil, :tags=>[{:tag=>{:name=>"Entertainment", :balance=>59.99}}]}
 
 class Transaction < ModelBase
-  forward_from_hash :original_name, :memo, :tags
+  forward_from_hash :original_name, :memo, :tags, :account_name
 
   def debit?
     response_hash[:transaction_type].downcase == "debit"

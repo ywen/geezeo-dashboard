@@ -1,4 +1,6 @@
 @import "susy"
+$total_columns: 16
+$column-width: 3em
 
 body
   font-family: arial,helvetica,sans-serif
@@ -12,6 +14,6 @@ body
   @include container
   display: inline
   #account-list
-    @include span-columns(4,12)
+    @include span-columns(4,16)
   #transaction-list
-    @include span-columns(8 omega,12)
+    @include span-columns(12 omega,16)

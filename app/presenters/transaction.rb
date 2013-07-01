@@ -1,8 +1,14 @@
 module Presenters
   class Transaction
     include ModelPresenter::Base
-    forward_from_model :original_name, :memo, :tags
+    forward_from_model :original_name, :memo, :account_name
     moneyize :balance
+
+    def tags
+      model.tags.map do |tag|
+        tag[:tag][:name]
+      end.join(", ")
+    end
 
     private
 
