@@ -3,7 +3,8 @@ module Presenters
     include ModelPresenter::Base
 
     def each_transaction
-      model.transactions.each do |transaction|
+      sorted_transactions = model.transactions.sort {|a, b| b.posted_at <=> a.posted_at}
+      sorted_transactions.each do |transaction|
         yield Transaction.new(transaction)
       end
     end
